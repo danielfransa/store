@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_01_004314) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_02_093900) do
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -22,15 +22,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_01_004314) do
 
   create_table "inventories", force: :cascade do |t|
     t.integer "sku_id", null: false
-    t.integer "local_id"
+    t.integer "location_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["local_id"], name: "index_inventories_on_local_id"
+    t.index ["location_id"], name: "index_inventories_on_location_id"
     t.index ["sku_id"], name: "index_inventories_on_sku_id"
   end
 
-  create_table "locals", force: :cascade do |t|
+  create_table "locations", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
@@ -77,7 +77,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_01_004314) do
     t.index ["product_id"], name: "index_skus_on_product_id"
   end
 
-  add_foreign_key "inventories", "locals"
+  add_foreign_key "inventories", "locations"
   add_foreign_key "inventories", "skus"
   add_foreign_key "sale_items", "sales"
   add_foreign_key "sale_items", "skus"

@@ -16,7 +16,7 @@ class SkusController < ApplicationController
   def create
     @sku = @product.skus.build(sku_params)
     if @sku.save
-      redirect_to @sku, notice: "SKU criado com sucesso."
+      redirect_to @sku, notice: "SKU was sucessfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class SkusController < ApplicationController
 
   def update
     if @sku.update(sku_params)
-      redirect_to @sku, notice: "SKU atualizado com sucesso."
+      redirect_to @sku, notice: "SKU was sucessfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class SkusController < ApplicationController
 
   def destroy
     @sku.destroy
-    redirect_to skus_path, notice: "SKU excluído com sucesso."
+    redirect_to skus_path, notice: "SKU was sucessfuly deleted."
   end
 
   private
