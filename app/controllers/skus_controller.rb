@@ -34,8 +34,11 @@ class SkusController < ApplicationController
   end
 
   def destroy
-    @sku.destroy
-    redirect_to skus_path, notice: "SKU was sucessfuly deleted."
+    if @sku.destroy
+      redirect_to skus_url, notice: "SKU was sucessfuly deleted."
+    else
+      redirect_to skus_url, notice: "Something went wrong"
+    end
   end
 
   private

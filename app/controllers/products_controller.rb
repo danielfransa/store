@@ -33,8 +33,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    redirect_to products_url, notice: "Product was sucessfuly deleted."
+    if @product.destroy
+      redirect_to products_url, notice: "Product was sucessfuly deleted."
+    else
+      redirect_to products_url, notice: "Something went wrong"
+    end
   end
 
   private

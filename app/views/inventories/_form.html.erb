@@ -1,0 +1,20 @@
+<%= form_with(model: @inventory, local: true) do |f|%>
+  <div>
+    <%= f.label :sku_id, "SKU" %>
+    <%= f.<%= collection_select :sku_id, @skus, :id, :code, prompt: "Select a SKU" %>%>
+  </div>
+
+  <div>
+    <%= f.label :location_id, "Location (optional)" %>
+    <%= f.collection_select :location_id, :@locations, :id, :name, include_blank: true %>
+  </div>
+
+  <div>
+    <% f.label :quantity %>
+    <%= f.number_field :quantity, min: 0 %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
