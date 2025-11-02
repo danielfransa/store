@@ -1,0 +1,47 @@
+<%= form_with(model: @sale) do |form| %>
+  <% if @sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sale.errors.count, "error") %> prevented this sale from being saved:</h2>
+      <ul>
+        <% @sale.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :client_id, "Client" %>
+    <%= form.collection_select :client_id, Client.all, :id, :name, include_blank: "Select client" %>
+  </div>
+
+  <div>
+    <%= form.label :date %>
+    <%= form.datetime_local_field :date, value: @sale.date || Time.current %>
+  </div>
+
+  <h3>Sale Items</h3>
+
+  <div id="sale-items">
+    <%= form.fields_for :sale_items do |item_form| %>
+      <div class="sale-item">
+        <%= item_form.label :inventory_id, "Inventory" %>
+        <%= item_form.collection_select :inventory_id, Inventory.all, :id, :id, prompt: "Select Inventory" %>
+
+        <%= item_form.label :quantity %>
+        <%= item_form.number_field :quantity, min: 1 %>
+
+        <%= item_form.label :unit_price %>
+        <%= item_form.number_field :unit_price, step: 0.01 %>
+
+        <%= item_form.check_box :_destroy %>
+        <%= item_form.label :_destroy, "Remove item" %>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

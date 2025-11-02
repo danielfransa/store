@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[edit update show destory]
+  before_action :set_product, only: %i[edit update show destroy]
   def index
     @product = Product.all.order(:id)
   end
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
 
   def destroy
     if @product.destroy
-      redirect_to products_url, notice: "Product was sucessfuly deleted."
+      redirect_to products_url, notice: "Product was sucessfully deleted."
     else
       redirect_to products_url, notice: "Something went wrong"
     end

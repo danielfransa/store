@@ -1,5 +1,5 @@
 class SkusController < ApplicationController
-  before_action :set_sku, only: %i[edit update show destory]
+  before_action :set_sku, only: %i[edit update show destroy]
   before_action :set_product, only: %i[new create]
 
   def index
@@ -35,7 +35,7 @@ class SkusController < ApplicationController
 
   def destroy
     if @sku.destroy
-      redirect_to skus_url, notice: "SKU was sucessfuly deleted."
+      redirect_to skus_url, notice: "SKU was sucessfully deleted."
     else
       redirect_to skus_url, notice: "Something went wrong"
     end

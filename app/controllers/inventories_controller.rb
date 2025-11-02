@@ -1,5 +1,5 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: %i[show edit update destory]
+  before_action :set_inventory, only: %i[show edit update destroy]
   before_action :set_dependencies, only: %i[new create edit update]
 
   def index
@@ -31,7 +31,7 @@ class InventoriesController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     if @inventory.destroy
       redirect_to inventories_url, notice: "Inventory record was deleted successfully"
     else
