@@ -45,6 +45,6 @@ class ClientsController < ApplicationController
   end
 
   def client_params
-    params.require(:client).premit(:name, :email, :phone, :document)
+    params.require(:client).permit(:name, :email, :phone, :document)
   end
 end
